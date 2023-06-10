@@ -72,7 +72,7 @@ export default function Calendar() {
                         key={event.id}
                         onClick={() => setActiveEvent(event.id)}
                         $isActive={event.id === activeEvent}
-                    >{event.id}</Event>
+                    />
             )));
     }
 

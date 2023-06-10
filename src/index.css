@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+
+  font-family: "Mainstream", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+
+  font-style: normal;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  align-items: center;
+}

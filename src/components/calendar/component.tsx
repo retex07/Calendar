@@ -55,7 +55,6 @@ export default function Calendar() {
     const currentDaysInWeek: string[] = [...getCurrentWeek(selectedDate)];
 
     const calendarEvents = useSelector((state: RootState) => state.calendar.calendarEvents);
-    console.log(calendarEvents);
     const dispatch = useDispatch();
 
     function findIndexActiveEvent() {

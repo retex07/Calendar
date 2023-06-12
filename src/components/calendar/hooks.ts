@@ -1,20 +1,20 @@
 export function useDate() {
-    function getDaysInMonth(date: Date): number {
+    function getDaysInMonth(date: Date) {
         return 32 - new Date(date.getFullYear(), date.getMonth(), 32).getDate();
     }
 
-    function getFullDate(date: number): string {
+    function getFullNumberOfAnyDate(date: number) {
         if (date.toString().length === 1) {
             return `0${date}`
         }
         return date.toString();
     }
 
-    function getCurrentWeek(date: Date): string[] {
+    function getCurrentWeek(date: Date) {
         const datesOfWeek: string[] = [];
 
         [...Array(date.getDay())].map((item: undefined, index) =>
-            datesOfWeek.unshift(getFullDate(date.getDate() - index >= 1 ?
+            datesOfWeek.unshift(getFullNumberOfAnyDate(date.getDate() - index >= 1 ?
                 date.getDate() - index : (Number(datesOfWeek[0]) === 1 ?
                         getDaysInMonth(new Date(
                             date.getFullYear(),
@@ -26,7 +26,7 @@ export function useDate() {
         );
 
         [...Array(7 - date.getDay())].map((item: undefined, index) =>
-            datesOfWeek.push(getFullDate((date.getDate() + index + 1) <= getDaysInMonth(date) ?
+            datesOfWeek.push(getFullNumberOfAnyDate((date.getDate() + index + 1) <= getDaysInMonth(date) ?
                     (date.getDate() + index + 1) : (datesOfWeek[datesOfWeek.length - 1] === getDaysInMonth(date).toString() ?
                         1 : Number(datesOfWeek[datesOfWeek.length - 1]) + 1
                     )
@@ -36,11 +36,18 @@ export function useDate() {
         return datesOfWeek;
     }
 
-    return { getCurrentWeek, getFullDate, getDaysInMonth };
+    function getTextDate(date: Date) {
+        return `${date.getFullYear()} 
+            ${getFullNumberOfAnyDate(date.getMonth())} 
+            ${getFullNumberOfAnyDate(date.getDate())}
+        `;
+    }
+
+    return { getCurrentWeek, getFullNumberOfAnyDate, getDaysInMonth, getTextDate };
 }
 
 export function usePositionOfGrid() {
-    function getRow(index: number): number {
+    function getRow(index: number) {
         switch (true) {
             case (index >= 0 && index < 7):
                 return 0;
@@ -93,7 +100,7 @@ export function usePositionOfGrid() {
         }
     }
 
-    function getCol(index: number): number {
+    function getCol(index: number) {
         switch (index % 7) {
             case 0:
                 return 0;

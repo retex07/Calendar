@@ -17,12 +17,3 @@ p {
 
   font-style: normal;
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-
-  align-items: center;
-}

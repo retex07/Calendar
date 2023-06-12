@@ -1,4 +1,4 @@
-import { calendarTypeEvent } from "../../components/calendar/types";
+import { calendarTypeEvent } from "components/calendar/types";
 
 const calendarEvents: calendarTypeEvent[] = [
     {

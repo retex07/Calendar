@@ -1,24 +1,14 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteEvent, addEvent } from "../../store/calendarSlice";
-import { RootState } from "../../store";
+import { useSelector } from "react-redux";
+import { RootState } from "store";
 
-import { ReactComponent as RightArrow } from "../../static/icons/chevron-right.svg";
-import { ReactComponent as LeftArrow } from "../../static/icons/chevron-left.svg";
-import { ReactComponent as AddEvent } from "../../static/icons/add.svg";
+import { ReactComponent as RightArrow } from "static/icons/chevron-right.svg";
+import { ReactComponent as LeftArrow } from "static/icons/chevron-left.svg";
+import { ReactComponent as AddEvent } from "static/icons/add.svg";
 
-import {
-    months,
-    times,
-    daysOfWeak,
-    textHeader,
-    textButtonCancel,
-    textButtonDelete,
-    textButtonToday,
-    textEnterDate,
-    textFormatDate
-} from "./accessories";
-
+import { months, times, daysOfWeak, textHeader } from "./accessories";
+import { ActionsEventModal } from "./modals/actionsEvent";
+import { AddEventModal } from "./modals/addEvent";
 import { useDate, usePositionOfGrid } from "./hooks";
 import { calendarTypeEvent } from "./types";
 import {
@@ -29,7 +19,6 @@ import {
     DaysGrid,
     GridEvents,
     EventsSection,
-    Footer,
     Header,
     HeadingText,
     LeftArrowButton,
@@ -39,23 +28,19 @@ import {
     Event,
     Wrapper,
     EventOfDate,
-    TodayButton,
-    CancelButton,
-    DeleteButton,
-    ActionsAfterClick
 } from "./styled";
 
 export default function Calendar() {
+    const [isOpenModalAddEvent, setIsOpenModalAddEvent] = useState(false);
+    const [isOpenModalActionsEvent, setIsOpenModalActionsEvent] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [activeEvent, setActiveEvent] = useState<number | undefined>(undefined);
 
     const { getRow, getCol } = usePositionOfGrid();
-    const { getCurrentWeek, getFullDate } = useDate();
+    const { getCurrentWeek, getFullNumberOfAnyDate } = useDate();
 
     const currentDaysInWeek: string[] = [...getCurrentWeek(selectedDate)];
-
     const calendarEvents = useSelector((state: RootState) => state.calendar.calendarEvents);
-    const dispatch = useDispatch();
 
     function findIndexActiveEvent() {
         return calendarEvents.findIndex(event => event.id === activeEvent);
@@ -69,34 +54,12 @@ export default function Calendar() {
             new Date(event.date).getHours() === getRow(index) && ((
                     <Event
                         key={event.id}
-                        onClick={() => setActiveEvent(event.id)}
-                        $isActive={event.id === activeEvent}
+                        onClick={() => {
+                            setActiveEvent(event.id);
+                            setIsOpenModalActionsEvent(true);
+                        }}
                     />
             )));
-    }
-
-    function isActiveEventToday() {
-        if (activeEvent) {
-            return new Date().getFullYear() === new Date(
-                    calendarEvents[findIndexActiveEvent()].date
-                ).getFullYear() &&
-                new Date().getMonth() === new Date(
-                    calendarEvents[findIndexActiveEvent()].date
-                ).getMonth() &&
-                new Date().getDate() === new Date(
-                    calendarEvents[findIndexActiveEvent()].date
-                ).getDate();
-        }
-    }
-
-    function addEventCalendar() {
-        const date = prompt(`${textEnterDate} \n ${textFormatDate}`);
-        if (date) {
-            dispatch(addEvent({
-                id: calendarEvents.length,
-                date: new Date(date).toISOString(),
-            }))
-        }
     }
 
     function onLeftDate() {
@@ -118,9 +81,20 @@ export default function Calendar() {
 
     return (
         <Wrapper>
+            <AddEventModal
+                isOpen={isOpenModalAddEvent}
+                onClose={() => setIsOpenModalAddEvent(false)}
+                calendarEvents={calendarEvents}
+            />
+            <ActionsEventModal
+                isOpen={isOpenModalActionsEvent}
+                onClose={() => setIsOpenModalActionsEvent(false)}
+                idEvent={findIndexActiveEvent()}
+                calendarEvents={calendarEvents}
+            />
             <Header>
                 <HeadingText>{textHeader}</HeadingText>
-                <AddButton onClick={addEventCalendar}>
+                <AddButton onClick={() => setIsOpenModalAddEvent(true)}>
                     <AddEvent />
                 </AddButton>
             </Header>
@@ -135,7 +109,7 @@ export default function Calendar() {
                             $isSelect={
                                 new Date().getFullYear() === selectedDate.getFullYear() &&
                                 new Date().getMonth() === selectedDate.getMonth() &&
-                                getFullDate(new Date().getDate()) === date
+                                getFullNumberOfAnyDate(new Date().getDate()) === date
                             }
                         >
                             <span>{date}</span>
@@ -164,21 +138,6 @@ export default function Calendar() {
                     ))}
                 </GridEvents>
             </EventsSection>
-            {activeEvent && (
-                <Footer>
-                    {isActiveEventToday() && <TodayButton>{textButtonToday}</TodayButton>}
-                    <ActionsAfterClick>
-                        <DeleteButton onClick={() => {
-                            dispatch(deleteEvent(findIndexActiveEvent()));
-                            setActiveEvent(undefined);
-                        }}
-                        >
-                            {textButtonDelete}
-                        </DeleteButton>
-                        <CancelButton onClick={() => setActiveEvent(undefined)}>{textButtonCancel}</CancelButton>
-                    </ActionsAfterClick>
-                </Footer>
-            )}
         </Wrapper>
     );
 }

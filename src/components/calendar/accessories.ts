@@ -1,8 +1,9 @@
 export const textHeader = "Interview Calendar";
 export const textButtonDelete = "Delete";
 export const textButtonCancel = "Cancel";
-export const textButtonToday = "Today";
-export const textEnterDate = "Enter event time:";
+export const textEnterDate = "Enter date:";
+export const textEnterTitle = "Enter title:";
+export const textEnterDescription = "Enter description:";
 export const textFormatDate = "YYYY-MM-DD HH:mm:ss";
 
 export const months = [

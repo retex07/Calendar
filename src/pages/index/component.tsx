@@ -1,10 +1,13 @@
 import React from "react";
-import Calendar from "../../components/calendar";
+
+import Calendar from "components/calendar";
+
+import { Container } from "./styled";
 
 export default function Index() {
     return (
-        <div className="container">
+        <Container>
             <Calendar />
-        </div>
+        </Container>
     );
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { variables } from "styles/variables";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const Wrapper = styled.div`
   max-width: 740px;
   width: 100%;
 
-  border: 1px solid #e8e8ec;
+  border: 1px solid ${variables.$color__light__gray};
   border-radius: 10px;  
 `;
 
@@ -26,7 +27,7 @@ export const HeadingText = styled.h2`
   font-weight: 100;
   font-size: 28px;
   line-height: 1.2;
-  color: #0f0f0f;
+  color: ${variables.$color__black};
 `;
 
 export const AddButton = styled.button`
@@ -40,7 +41,7 @@ export const AddButton = styled.button`
     width: 38px;
   }
   path {
-    stroke: #FF0000C9;
+    stroke: ${variables.$color__red};
     stroke-width: 1.9px;
   }
 `;
@@ -59,7 +60,7 @@ export const DatesSection = styled.section`
     padding: 10px 12px 10px 78px;
   }
   
-  background-color: #f6f6f6;
+  background-color: ${variables.$color__light__bg};
 `;
 
 export const DayOfWeak = styled.span`
@@ -68,7 +69,7 @@ export const DayOfWeak = styled.span`
   font-size: 14px;
   font-weight: 600;
   
-  color: #0f0f0f;
+  color: ${variables.$color__black};
 `;
 
 export const DateOfMonth = styled.span<{$isSelect?: boolean}>`
@@ -84,7 +85,7 @@ export const DateOfMonth = styled.span<{$isSelect?: boolean}>`
   margin-left: auto;
 
   border-radius: 60px;
-  background-color: ${props => props.$isSelect ? `#FF0000C9` : `none`};
+  background-color: ${props => props.$isSelect ? `${variables.$color__red}` : `none`};
 
   cursor: default;
 
@@ -92,14 +93,14 @@ export const DateOfMonth = styled.span<{$isSelect?: boolean}>`
     font-size: 20px;
     line-height: 1.2;
     font-weight: 500;
-    color: ${props => props.$isSelect ? `#e8e8ec` : `none`};
+    color: ${props => props.$isSelect ? `${variables.$color__light__gray}` : `none`};
   }
 
   &:hover {
-    background-color: ${props => props.$isSelect ? `#FF0000C9` : `#949494`};
+    background-color: ${props => props.$isSelect ? `${variables.$color__red}` : `${variables.$color__gray}`};
     
     span {
-      color: #e8e8ec;
+      color: ${variables.$color__white};
     }
   }
 `;
@@ -121,7 +122,7 @@ export const Month = styled.p`
   font-size: 18px;
   font-weight: 500;
   
-  color: #090909;
+  color: ${variables.$color__black};
 
   grid-column-start: 2;
   grid-column-end: 7;
@@ -139,7 +140,7 @@ export const LeftArrowButton = styled.button`
     width: 28px;
   }
   path {
-    stroke: #FF0000C9;
+    stroke: ${variables.$color__red};
     stroke-width: 2.5px;
   }
 `;
@@ -154,7 +155,7 @@ export const RightArrowButton = styled.button`
     width: 28px;
   }
   path {
-    stroke: #FF0000C9;
+    stroke: ${variables.$color__red};
     stroke-width: 2.5px;
   }
 `;
@@ -187,7 +188,7 @@ export const Timestamp = styled.div`
     
     min-height: 22px;
 
-    color: #c2c2c2;
+    color: ${variables.$color__gray};
   }
 `;
 
@@ -213,65 +214,11 @@ export const EventOfDate = styled.div<{
   
   cursor: pointer;
 
-  border-bottom: ${props => !props.$isLastEventRow ? `1px solid #e7e7e7` : `none`};
-  border-right: ${props => !props.$isLastEventColumn ? `1px solid #e7e7e7` : `none`};
+  border-bottom: ${props => !props.$isLastEventRow ? `1px solid ${variables.$color__light__gray}` : `none`};
+  border-right: ${props => !props.$isLastEventColumn ? `1px solid ${variables.$color__light__gray}` : `none`};
 `;
 
-export const Footer = styled.footer`
-  display: flex;
-  flex-direction: row;
-
-  width: calc(100% - 56px);
-  padding: 16px 28px;
-  
-  justify-content: space-between;
-  align-items: center;
-
-  background-color: #f6f6f6;
-`;
-
-export const TodayButton = styled.button`
-  margin: 0;
-  border: 0;
-  background: none;
-  
-  font-size: 18px;
-  color: #FF0000C9;
-`;
-
-export const ActionsAfterClick = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  width: 100%;
-  justify-content: flex-end;
-  
-  gap: 26px;
-`;
-
-export const DeleteButton = styled.button`
-  margin: 0;
-  border: 0;
-  background: none;
-  
-  cursor: pointer;
-  
-  font-size: 18px;
-  color: #FF0000C9;
-`;
-
-export const CancelButton = styled.button`
-  margin: 0;
-  border: 0;
-  background: none;
-  
-  cursor: pointer;
-  
-  font-size: 18px;
-  color: #FF0000C9;
-`;
-
-export const Event = styled.div<{$isActive?: boolean}>`
+export const Event = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -281,5 +228,5 @@ export const Event = styled.div<{$isActive?: boolean}>`
   width: 100%;
   height: 100%;
 
-  background-color: ${props => props.$isActive ? "#b4b8ff" : "#ecedff"};
+  background-color: ${variables.$color__blue};
 `;

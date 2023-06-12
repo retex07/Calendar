@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import calendarEvents from "../mocks";
+import calendarEvents from "mocks";
 
 const calendarSlice = createSlice({
     name: "calendar",

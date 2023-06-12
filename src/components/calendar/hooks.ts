@@ -1,4 +1,38 @@
+import { useTranslation } from "react-i18next";
+
 export function useDate() {
+    const { t } = useTranslation("c_calendar");
+
+    function getMonthOfNumber(number: number) {
+        const months = [
+            t("months.january"),
+            t("months.february"),
+            t("months.march"),
+            t("months.april"),
+            t("months.may"),
+            t("months.june"),
+            t("months.july"),
+            t("months.august"),
+            t("months.september"),
+            t("months.october"),
+            t("months.november"),
+            t("months.december")
+        ];
+        return months[number];
+    }
+
+    function getDaysOfWeek() {
+        return [
+            t("daysOfWeek.monday"),
+            t("daysOfWeek.tuesday"),
+            t("daysOfWeek.wednesday"),
+            t("daysOfWeek.thursday"),
+            t("daysOfWeek.friday"),
+            t("daysOfWeek.saturday"),
+            t("daysOfWeek.sunday"),
+        ];
+    }
+
     function getDaysInMonth(date: Date) {
         return 32 - new Date(date.getFullYear(), date.getMonth(), 32).getDate();
     }
@@ -43,7 +77,14 @@ export function useDate() {
         `;
     }
 
-    return { getCurrentWeek, getFullNumberOfAnyDate, getDaysInMonth, getTextDate };
+    return {
+        getCurrentWeek,
+        getFullNumberOfAnyDate,
+        getMonthOfNumber,
+        getDaysOfWeek,
+        getDaysInMonth,
+        getTextDate
+    };
 }
 
 export function usePositionOfGrid() {

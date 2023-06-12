@@ -12,6 +12,13 @@ export const Wrapper = styled.div`
   border-radius: 10px;  
 `;
 
+export const EndHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+`;
+
 export const Header = styled.header`
   display: flex;
   flex-direction: row;

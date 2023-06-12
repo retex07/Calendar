@@ -7,7 +7,6 @@ import { deleteEvent } from "store/calendarSlice";
 
 import { useDate } from "../hooks";
 import { calendarTypeEvent } from "../types";
-import { textButtonCancel, textButtonDelete } from "../accessories";
 import {
     Header,
     HeadingText,
@@ -19,6 +18,7 @@ import {
     Dates,
     Description
 } from "./styled";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     isOpen: boolean;
@@ -28,13 +28,15 @@ interface Props {
 }
 
 export function ActionsEventModal(props: Props) {
+    const { t } = useTranslation("c_calendar");
+
     const { isOpen, onClose, idEvent, calendarEvents } = props;
     const dispatch = useDispatch();
 
     const { getTextDate } = useDate();
 
     function deleteThisEvent() {
-        if (window.confirm("Are you sure you want to delete this event?")) {
+        if (window.confirm(t("confirmDelete"))) {
             dispatch(deleteEvent(idEvent));
             onClose();
         }
@@ -51,8 +53,8 @@ export function ActionsEventModal(props: Props) {
                     <Dates>{getTextDate(new Date(calendarEvents[idEvent]?.date))}</Dates>
                 </Main>
                 <Footer>
-                    <DeleteButton onClick={deleteThisEvent}>{textButtonDelete}</DeleteButton>
-                    <CancelButton onClick={onClose}>{textButtonCancel}</CancelButton>
+                    <DeleteButton onClick={deleteThisEvent}>{t("buttons.delete")}</DeleteButton>
+                    <CancelButton onClick={onClose}>{t("buttons.cancel")}</CancelButton>
                 </Footer>
             </Wrapper>
         </Modal>

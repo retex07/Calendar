@@ -9,13 +9,6 @@ import Textarea from "components/textarea";
 import { regexp } from "constants/regexp";
 import { addEvent } from "store/calendarSlice";
 
-import {
-    textButtonCancel,
-    textFormatDate,
-    textEnterDate,
-    textEnterTitle,
-    textEnterDescription
-} from "../accessories";
 import { calendarTypeEvent } from "../types";
 import {
     Wrapper,
@@ -26,6 +19,7 @@ import {
     Form,
     Actions
 } from "./styled";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     isOpen: boolean;
@@ -40,6 +34,8 @@ interface Inputs {
 }
 
 export function AddEventModal(props: Props) {
+    const { t } = useTranslation("c_calendar");
+
     const { isOpen, onClose, calendarEvents } = props;
     const dispatch = useDispatch();
 
@@ -70,20 +66,20 @@ export function AddEventModal(props: Props) {
                     <Input
                         pattern={regexp.dateFormat}
                         register={register("date")}
-                        label={textEnterDate}
-                        placeholder={textFormatDate}
+                        label={t("labels.date")}
+                        placeholder={t("dateFormat")}
                         required
                     />
                     <Input
                         pattern={regexp.text}
-                        label={textEnterTitle}
+                        label={t("labels.title")}
                         register={register("title")}
                         required
                     />
-                    <Textarea label={textEnterDescription} required register={register("description")} />
+                    <Textarea label={t("labels.description")} required register={register("description")} />
                     <Actions>
-                        <AddButton type="submit">Add</AddButton>
-                        <CancelButton onClick={onClose}>{textButtonCancel}</CancelButton>
+                        <AddButton type="submit">{t("buttons.add")}</AddButton>
+                        <CancelButton onClick={onClose}>{t("buttons.cancel")}</CancelButton>
                     </Actions>
                 </Form>
             </Wrapper>

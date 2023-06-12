@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { useTranslation } from "react-i18next";
 
+import { RootState } from "store";
 import { ReactComponent as RightArrow } from "static/icons/chevron-right.svg";
+
+import SwitchLn from "components/switchLn";
+
 import { ReactComponent as LeftArrow } from "static/icons/chevron-left.svg";
 import { ReactComponent as AddEvent } from "static/icons/add.svg";
-
-import { months, times, daysOfWeak, textHeader } from "./accessories";
 import { ActionsEventModal } from "./modals/actionsEvent";
 import { AddEventModal } from "./modals/addEvent";
 import { useDate, usePositionOfGrid } from "./hooks";
 import { calendarTypeEvent } from "./types";
+import { times } from "./accessories";
 import {
     AddButton,
     DateOfMonth,
@@ -28,16 +31,19 @@ import {
     Event,
     Wrapper,
     EventOfDate,
+    EndHeader,
 } from "./styled";
 
 export default function Calendar() {
+    const { t } = useTranslation("c_calendar");
+
     const [isOpenModalAddEvent, setIsOpenModalAddEvent] = useState(false);
     const [isOpenModalActionsEvent, setIsOpenModalActionsEvent] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [activeEvent, setActiveEvent] = useState<number | undefined>(undefined);
 
     const { getRow, getCol } = usePositionOfGrid();
-    const { getCurrentWeek, getFullNumberOfAnyDate } = useDate();
+    const { getCurrentWeek, getFullNumberOfAnyDate, getMonthOfNumber, getDaysOfWeek } = useDate();
 
     const currentDaysInWeek: string[] = [...getCurrentWeek(selectedDate)];
     const calendarEvents = useSelector((state: RootState) => state.calendar.calendarEvents);
@@ -93,14 +99,17 @@ export default function Calendar() {
                 calendarEvents={calendarEvents}
             />
             <Header>
-                <HeadingText>{textHeader}</HeadingText>
-                <AddButton onClick={() => setIsOpenModalAddEvent(true)}>
-                    <AddEvent />
-                </AddButton>
+                <HeadingText>{t("header")}</HeadingText>
+                <EndHeader>
+                    <SwitchLn />
+                    <AddButton onClick={() => setIsOpenModalAddEvent(true)}>
+                        <AddEvent />
+                    </AddButton>
+                </EndHeader>
             </Header>
             <DatesSection>
                 <DaysGrid>
-                    {daysOfWeak.map((day: string, index) => (
+                    {getDaysOfWeek().map((day: string, index) => (
                         <DayOfWeak key={index}>{day}</DayOfWeak>
                     ))}
                     {currentDaysInWeek.map((date: string, index) => (
@@ -118,7 +127,7 @@ export default function Calendar() {
                     <LeftArrowButton onClick={onLeftDate}>
                         <LeftArrow />
                     </LeftArrowButton>
-                    <Month>{months[selectedDate.getMonth()]} {selectedDate.getFullYear()}</Month>
+                    <Month>{getMonthOfNumber(selectedDate.getMonth())} {selectedDate.getFullYear()}</Month>
                     <RightArrowButton onClick={onRightDate}>
                         <RightArrow />
                     </RightArrowButton>

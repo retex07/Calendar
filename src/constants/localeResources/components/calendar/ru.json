@@ -1,0 +1,38 @@
+{
+  "header": "Календарь интервью",
+  "buttons": {
+    "add": "Добавить",
+    "delete": "Удалить",
+    "cancel": "Отмена"
+  },
+  "labels": {
+    "date": "Введите дату:",
+    "title": "Введите название:",
+    "description": "Введите описание:"
+  },
+  "dateFormat": "ГГГГ-ММ-ДД ЧЧ:мм:сс",
+  "months": {
+    "january": "Январь",
+    "february": "Февраль",
+    "march": "Март",
+    "april": "Апрель",
+    "may": "Май",
+    "june": "Июнь",
+    "july": "Июль",
+    "august": "Август",
+    "september": "Сентябрь",
+    "october": "Октябрь",
+    "november": "Ноябрь",
+    "december": "Декабрь"
+  },
+  "daysOfWeek": {
+    "monday": "П",
+    "tuesday": "В",
+    "wednesday": "С",
+    "thursday": "Ч",
+    "friday": "П",
+    "saturday": "С",
+    "sunday": "В"
+  },
+  "confirmDelete": "Вы уверены, что хотите удалить этот евент?"
+}

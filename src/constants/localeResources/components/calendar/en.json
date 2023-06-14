@@ -1,4 +1,5 @@
 {
+  "addEvent": "Adding an event",
   "header": "Interview Calendar",
   "buttons": {
     "add": "Add",

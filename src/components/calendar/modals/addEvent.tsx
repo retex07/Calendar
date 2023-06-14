@@ -60,7 +60,7 @@ export function AddEventModal(props: Props) {
         <Modal isOpen={isOpen} onClose={onClose}>
             <Wrapper>
                 <Header>
-                    <HeadingText>Adding an event</HeadingText>
+                    <HeadingText>{t("addEvent")}</HeadingText>
                 </Header>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Input

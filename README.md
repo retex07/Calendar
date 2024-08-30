@@ -1,65 +1,52 @@
+Here's the translated README in English:
+
 # interview-calendar
 
-## Веб-приложение с недельным календарем
-Было реализовано статичное веб приложение (SPA) с использованием `React` *(библиотека JS)*, 
-`TypeScript` *(типизация)*, `styled-components` *(стилизация при помощи JS-компонентов и CSS)*, 
-`Redux-toolkit` *(обновление состояния евентов)*, `i118next` *(локализация)* и `react-hook-form` *(валидация)*.
+## Web Application with Weekly Calendar
+A static web application (SPA) was implemented using `React` *(JavaScript library)*, `TypeScript` *(type safety)*, `styled-components` *(styling using JS components and CSS)*, `Redux-toolkit` *(state management for events)*, `i18next` *(localization)*, and `react-hook-form` *(form validation)*.
 
-**Расположение компонента:** `/src/components/calendar`
+**Component location:** `/src/components/calendar`
 
-### О работе календаря
+### Calendar Overview
 
-#### Хедер:
+#### Header:
 
-![Хедер](/src/static/img/header.png)  
+![Header](/src/static/img/header.png)
 
-Чтобы добавить какой-либо евент, необходимо в хедере нажать "+" и
-заполнить форму, после чего добавится евент *(также обновит состояние евентов через `Redux-toolkit`)*.  
-Нажатие "RU" или "EN" приведёт к смене языка в системе.
-  
-#### Добавление события:  
-  
-![Добавить евент](/src/static/img/addEvent.png)
+To add an event, click the "+" button in the header and fill out the form, after which the event will be added *(it will also update the event state through `Redux-toolkit`)*.  
+Clicking "RU" or "EN" will change the system language.
 
-#### Секция текущей недели:
+#### Adding an Event:
 
-![Секция текущей недели](/src/static/img/sectionDate.png)
+![Add Event](/src/static/img/addEvent.png)
 
-После хедера *(шапки календаря)* располагается секция с датами текущей недели. Если нажать стрелку "влево" 
-или "вправо", то все числа недели сдвинутся на предыдущую или следующую недели соответсвенно 
-*(месяц и год меняются при их необходимом изменении)*.
+#### Current Week Section:
 
-#### Секция евентов:
+![Current Week Section](/src/static/img/sectionDate.png)
 
-![Секция евентов](/src/static/img/sectionEvent.png)
+Below the header *(calendar header)* is a section displaying the dates of the current week. If you click the left or right arrow, the dates of the week will shift to the previous or next week accordingly *(the month and year will update as needed)*.
 
-После блока с датами недели следует секция с временной
-сеткой *(евенты)* - именно здесь располагаются какие-либо назначенные события в определенную дату
-*(каждый столбец соответсвует дате из блока, в котором указаны дни недели и соответствующие числа, а каждая строка сетки
-соответсвует временному интервалу, на который выпадает евент)*.
+#### Events Section:
 
-#### Просмотр события:
+![Events Section](/src/static/img/sectionEvent.png)
 
-![Просмотр](/src/static/img/showEvent.png)
+Following the week dates section is the event grid section - this is where any scheduled events for a specific date are displayed *(each column corresponds to a date from the week dates section, and each row corresponds to the time slot for an event)*.
 
-Если нажать на событие, то на экране отобразится модальное окно с информацией об этом событии.
-Имеется две кнопки - отменить и удалить (обновление при помощи `Redux-toolkit`).
+#### Viewing an Event:
 
-#### Удаление события:
+![View Event](/src/static/img/showEvent.png)
 
-![Удаление](/src/static/img/deleteEvent.png)
+If you click on an event, a modal window will appear with information about the event. There are two buttons - cancel and delete (updates via `Redux-toolkit`).
 
-Если необходимо удалить событие, то после нажатия на "Удалить" необходимо подтвердить выполнение *(позволяет избежать случайного удаления)*.
+#### Deleting an Event:
 
-#### Адаптивность:
+![Delete Event](/src/static/img/deleteEvent.png)
 
-Календарь адптивный *(возможно просмтаривать с любого устройства)*.
-Для ширины страницы `<= 740px` календарь равномерно растягивается. Для ширины страницы `> 740px` 
-ширина календаря `= 740px`, календарь выравнивантвается по горизонтали по центру страницы.
+If you need to delete an event, you will need to confirm the action after clicking "Delete" *(this prevents accidental deletions)*.
 
-### Контакты
+### Contact Information
 
-#### Таушканов Александр Сергеевич
+#### Alexander Sergeevich Tauschkanov
 VK: https://vk.com/retex07/  
-Telegram: https://t.me/retex07/  
+Telegram: https://t.me/evrydan07/  
 GitHub: https://github.com/retex07/

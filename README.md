@@ -36,12 +36,6 @@ Following the week dates section is the event grid section - this is where any s
 
 If you click on an event, a modal window will appear with information about the event. There are two buttons - cancel and delete (updates via `Redux-toolkit`).
 
-#### Deleting an Event:
-
-![Delete Event](/src/static/img/deleteEvent.png)
-
-If you need to delete an event, you will need to confirm the action after clicking "Delete" *(this prevents accidental deletions)*.
-
 ### Contact Information
 
 #### Alexander Sergeevich Tauschkanov

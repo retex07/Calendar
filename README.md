@@ -1,5 +1,3 @@
-Here's the translated README in English:
-
 # interview-calendar
 
 ## Web Application with Weekly Calendar
